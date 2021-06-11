@@ -1,4 +1,5 @@
 import React from 'react';
+import { format } from 'date-fns';
 
 import { Repo } from 'types';
 
@@ -17,12 +18,14 @@ const RepoDetail: React.FC<Props> = ({
   updated_at,
   watchers_count,
 }) => {
+  const updatedAt = new Date(updated_at);
+
   return (
     <St.Wrapper>
       <h1>{name}</h1>
       <p>
         {language && `${language} | `}
-        {updated_at}
+        Last updated: {format(updatedAt, 'do LLLL y')}
       </p>
 
       <p>{description}</p>
