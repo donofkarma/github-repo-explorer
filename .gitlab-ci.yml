@@ -10,9 +10,9 @@ test:
     variables:
       - $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != 'main'
   script:
-    # intall dependencies
+    # install dependencies
     - yarn ci
     # start the server in the background
-    - yarn build && yarn start
+    - yarn start:ci &
     # run Cypress tests
     - yarn test:e2e
