@@ -7,7 +7,7 @@ const Header: React.FC = () => {
   return (
     <St.Wrapper>
       <Link href="/" passHref>
-        <a href="passHref">Github org explorer</a>
+        <a href="passHref">PokeAPI explorer</a>
       </Link>
     </St.Wrapper>
   );

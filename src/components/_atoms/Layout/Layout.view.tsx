@@ -20,9 +20,9 @@ const Layout: React.FC<Props> = ({ children, pageTitle }) => {
           content="initial-scale=1.0, width=device-width, viewport-fit=cover"
         />
 
-        <title>{pageTitle && `${pageTitle} - `}Github org explorer</title>
+        <title>{pageTitle && `${pageTitle} - `}PokeAPI explorer</title>
 
-        <meta name="description" content="Explore Github repos" />
+        <meta name="description" content="Explore Pokemon" />
       </Head>
 
       <Header />

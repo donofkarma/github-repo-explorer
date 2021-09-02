@@ -2,17 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First add a `.env` file at the root of the project with the following content:
-
-```
-API_URL=https://api.github.com
-GITHUB_TOKEN=
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-```
-
-To create a PAT for the Github repo please see this guide: [Creating a token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-token). You will not need to grant this token _any_ permissions for it to be able to read from the API.
-
-Second, run the development server:
+Run the development server:
 
 ```bash
 npm install && npm run dev

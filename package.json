@@ -6,55 +6,58 @@
     "node": ">= 14.0.0"
   },
   "scripts": {
+    "ci": "yarn install --frozen-lockfile",
     "postinstall": "next telemetry disable",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "analyze": "BUNDLE_ANALYZE=both yarn build",
     "format": "prettier --config .prettierrc --write src/**/*.{js,jsx,ts,tsx,json,css,scss,md}",
     "lint": "eslint src/**/*.{ts,tsx}",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "find:unused": "npx next-unused"
   },
   "dependencies": {
+    "@apollo/client": "^3.4.8",
+    "apollo-link": "^1.2.14",
+    "apollo-link-rest": "^0.8.0-beta.0",
     "cross-fetch": "^3.1.4",
-    "date-fns": "^2.22.1",
-    "next": "^10.2.3",
-    "query-string": "^7.0.0",
+    "date-fns": "^2.23.0",
+    "graphql": "^15.5.1",
+    "graphql-anywhere": "^4.2.7",
+    "next": "^11.1.0",
+    "qs": "^6.10.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "styled-components": "^5.3.0",
     "swr": "^0.5.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.5",
-    "@babel/preset-env": "^7.14.5",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
-    "@babel/preset-typescript": "^7.14.5",
-    "@testing-library/jest-dom": "^5.13.0",
-    "@testing-library/react": "^11.2.7",
-    "@types/jest": "^26.0.23",
-    "@types/react": "^17.0.11",
-    "@types/react-dom": "^17.0.7",
-    "@types/styled-components": "^5.1.10",
-    "@types/node": "^15.12.2",
-    "babel-jest": "^27.0.2",
-    "babel-plugin-styled-components": "^1.12.0",
-    "eslint": "^7.28.0",
+    "@babel/preset-typescript": "^7.15.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@types/jest": "^27.0.1",
+    "@types/react": "^17.0.19",
+    "@types/react-dom": "^17.0.9",
+    "@types/styled-components": "^5.1.12",
+    "@types/node": "^16.7.1",
+    "babel-jest": "^27.0.6",
+    "babel-plugin-styled-components": "^1.13.2",
+    "eslint": "^7.32.0",
     "eslint-config-airbnb-typescript-prettier": "^4.2.0",
     "eslint-import-resolver-typescript": "^2.4.0",
-    "husky": "4.3.8",
-    "jest": "^27.0.4",
-    "jest-styled-components": "^7.0.4",
-    "lint-staged": "^11.0.0",
-    "prettier": "^2.3.1",
+    "husky": "7.0.1",
+    "jest": "^27.0.6",
+    "jest-styled-components": "^7.0.5",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.3.2",
     "tsconfig-paths-webpack-plugin": "^3.5.1",
-    "typescript": "^4.3.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "typescript": "^4.3.5"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
@@ -65,6 +68,29 @@
     ],
     "src/**/*.{ts,tsx}": [
       "bash -c tsc --noEmit"
+    ]
+  },
+  "next-unused": {
+    "alias": {
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ]
+    },
+    "debug": true,
+    "include": [
+      "components",
+      "lib",
+      "pages"
+    ],
+    "exclude": [],
+    "entrypoints": [
+      "pages"
     ]
   }
 }
