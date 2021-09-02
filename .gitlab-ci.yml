@@ -12,7 +12,7 @@ test:
   script:
     # install dependencies
     - yarn ci
-    # start the server in the background
-    - yarn start:ci &
+    # run a production build
+    - yarn build
     # run Cypress tests
-    - yarn test:e2e
+    - yarn start:ci
