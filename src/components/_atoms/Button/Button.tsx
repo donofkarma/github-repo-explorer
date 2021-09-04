@@ -8,7 +8,7 @@ import ButtonView from './Button.view';
 const Button: React.FC<Props> = ({ href, type, ...rest }) => {
   if (href) {
     return (
-      <Link href={href}>
+      <Link href={href} passHref>
         <ButtonView {...rest} as="a" />
       </Link>
     );

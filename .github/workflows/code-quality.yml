@@ -6,7 +6,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  code-quality:
     runs-on: ubuntu-latest
 
     strategy:
@@ -14,14 +14,16 @@ jobs:
         node-version: [14.x]
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
 
     - name: Install dependencies
-      run: yarn install --frozen-lockfile
+      run: yarn ci
 
     - name: Lint
       run: yarn lint
@@ -29,5 +31,14 @@ jobs:
     - name: Check types
       run: yarn type-check
 
-    - name: Run tests
+    - name: Run unit tests
       run: yarn test
+
+    - name: Run E2E tests
+      uses: cypress-io/github-action@v2
+      with:
+        build: yarn build
+        command: yarn test:e2e
+        install: false
+        start: yarn start
+        wait-on: 'http://localhost:3000'

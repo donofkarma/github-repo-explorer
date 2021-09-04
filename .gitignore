@@ -31,5 +31,7 @@ Thumbs.db
 #################
 .next/
 coverage/
+cypress/screenshots
+cypress/videos
 node_modules/
 .env
