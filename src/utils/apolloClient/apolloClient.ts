@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { ApolloClient, HttpLink, from, InMemoryCache } from '@apollo/client';
-import { RestLink } from 'apollo-link-rest';
 
 let apolloClient: any;
 
@@ -8,13 +7,10 @@ function createApolloClient() {
   const httpLink = new HttpLink({
     uri: 'https://beta.pokeapi.co/graphql/v1beta/',
   });
-  const restLink = new RestLink({
-    uri: 'https://pokeapi.co/api/v2/',
-  });
 
   return new ApolloClient({
     ssrMode: typeof window === 'undefined', // set to true for SSR
-    link: from([restLink, httpLink]),
+    link: from([httpLink]),
     cache: new InMemoryCache(),
   });
 }

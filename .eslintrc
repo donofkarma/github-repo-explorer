@@ -1,14 +1,19 @@
 {
+  "root": true,
   "extends": [
-    "next",
-    "prettier"
+    "next/core-web-vitals"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(test).[jt]s?(x)"
+      ],
+      "extends": ["plugin:testing-library/react"]
+    }
   ],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "settings": {
-    "import/resolver": {
-      "typescript": {}
-    }
-  }
+  "plugins": ["testing-library"]
 }
