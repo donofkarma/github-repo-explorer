@@ -1,20 +1,12 @@
-import React from 'react';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 
-import Layout from 'components/_atoms/Layout';
-import { initializeApollo } from 'utils/apolloClient';
-
-const query = gql`
-  query Pokemon {
-    pokemon_v2_pokemon(limit: 10) {
-      name
-    }
-  }
-`;
+import Layout from '@components/_atoms/Layout';
+import { GetPokemonList } from '@graphql/generated/GetPokemonList';
+import { GET_POKEMON_LIST } from '@graphql/queries';
+import { initializeApollo } from '@lib/apolloClient';
 
 const Home: React.FC = () => {
-  // const { data, error, loading } = useQuery(query);
-  const { data, error, loading } = useQuery(query);
+  const { data, error, loading } = useQuery<GetPokemonList>(GET_POKEMON_LIST);
 
   console.log({ data, error, loading });
 
@@ -28,8 +20,8 @@ const Home: React.FC = () => {
 export async function getStaticProps() {
   const apolloClient = initializeApollo();
 
-  await apolloClient.query({
-    query,
+  await apolloClient.query<GetPokemonList>({
+    query: GET_POKEMON_LIST,
   });
 
   return {

@@ -12,63 +12,64 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "start:ci": "start-server-and-test start http://localhost:3000 test:e2e",
     "analyze": "BUNDLE_ANALYZE=both yarn build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "format": "prettier --config .prettierrc --write src/**/*.{js,jsx,ts,tsx,json,css,scss,md}",
     "lint": "next lint",
     "type-check": "tsc --pretty --noEmit",
-    "find:unused": "npx next-unused",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "test:e2e": "cypress run"
+    "test:e2e": "cypress run",
+    "gql": "yarn gql:schema && yarn gql:codegen",
+    "gql:schema": "apollo client:download-schema --endpoint https://beta.pokeapi.co/graphql/v1beta ./src/graphql/generated/schema.graphqls",
+    "gql:codegen": "apollo client:codegen --target typescript --localSchemaFile ./src/graphql/generated/schema.graphqls --outputFlat --includes \"src/graphql/**/*.ts\" --excludes \"src/graphql/generated/**\" --addTypename --globalTypesFile \"src/graphql/generated/graphql-global-types.ts\" ./src/graphql/generated",
+    "find:unused": "npx next-unused"
   },
   "dependencies": {
-    "@apollo/client": "^3.4.10",
-    "cross-fetch": "^3.1.4",
-    "graphql": "^15.5.3",
+    "@apollo/client": "^3.4.16",
+    "graphql": "^15.6.1",
     "next": "^11.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "styled-components": "^5.3.1",
-    "swr": "^1.0.0"
+    "styled-components": "^5.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.5",
-    "@storybook/addon-actions": "^6.3.8",
-    "@storybook/addon-essentials": "^6.3.8",
-    "@storybook/react": "^6.3.8",
+    "@babel/core": "^7.15.8",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/react": "^6.3.12",
     "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.0.0",
-    "@types/jest": "^27.0.1",
-    "@types/node": "^16.7.10",
-    "@types/react": "^17.0.20",
+    "@testing-library/react": "^12.1.2",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.11.0",
+    "@types/react": "^17.0.30",
     "@types/react-dom": "^17.0.9",
-    "@types/styled-components": "^5.1.14",
-    "babel-jest": "^27.1.0",
+    "@types/styled-components": "^5.1.15",
+    "apollo": "^2.33.6",
+    "babel-jest": "^27.2.5",
     "babel-loader": "^8.2.2",
-    "cypress": "^8.3.1",
-    "eslint": "^7.32.0",
+    "cypress": "^8.6.0",
+    "eslint": "^8.0.1",
     "eslint-config-next": "^11.1.2",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-testing-library": "^4.12.1",
-    "husky": "7.0.2",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-testing-library": "^4.12.4",
+    "husky": "^7.0.2",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^27.1.0",
-    "jest-watch-typeahead": "^0.6.4",
-    "lint-staged": "^11.1.2",
-    "prettier": "^2.3.2",
-    "start-server-and-test": "^1.14.0",
+    "jest": "^27.2.5",
+    "jest-watch-typeahead": "^1.0.0",
+    "lint-staged": "^11.2.3",
+    "prettier": "^2.4.1",
     "tsconfig-paths-webpack-plugin": "^3.5.1",
-    "typescript": "^4.4.2"
+    "typescript": "^4.4.4"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "prettier --config .prettierrc --write"
     ],
     "src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix"
+      "next lint --fix"
     ],
     "src/**/*.{ts,tsx}": [
       "bash -c tsc --noEmit"
@@ -79,18 +80,27 @@
       "@components/*": [
         "src/components/*"
       ],
+      "@graphql/*": [
+        "src/graphql/*"
+      ],
+      "@lib/*": [
+        "src/lib/*"
+      ],
       "@styles/*": [
         "src/styles/*"
       ],
-      "@utils/*": [
-        "src/utils/*"
+      "@types/*": [
+        "src/types/*"
       ]
     },
     "debug": true,
     "include": [
       "components",
+      "graphql",
       "lib",
-      "pages"
+      "pages",
+      "styles",
+      "types"
     ],
     "exclude": [],
     "entrypoints": [
