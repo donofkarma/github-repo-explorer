@@ -1,5 +1,5 @@
-import React from 'react';
 import Link from 'next/link';
+import React from 'react';
 
 import { VARIANTS } from './Button.constants';
 import { Props } from './Button.types';

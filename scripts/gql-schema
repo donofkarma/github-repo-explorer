@@ -1,0 +1,3 @@
+#!/bin/sh
+
+yarn apollo client:download-schema --endpoint $NEXT_PUBLIC_POKEAPI_GRAPHPQL ./src/graphql/generated/schema.graphqls

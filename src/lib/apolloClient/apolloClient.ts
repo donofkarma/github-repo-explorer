@@ -11,7 +11,7 @@ let apolloClient: ApolloClient<NormalizedCacheObject>;
 
 function createApolloClient() {
   const httpLink = new HttpLink({
-    uri: 'https://beta.pokeapi.co/graphql/v1beta/',
+    uri: process.env.NEXT_PUBLIC_POKEAPI_GRAPHPQL,
   });
 
   return new ApolloClient({

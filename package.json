@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">= 14.0.0"
+    "node": "14.x"
   },
   "scripts": {
     "ci": "yarn install --frozen-lockfile",
@@ -17,12 +17,13 @@
     "build-storybook": "build-storybook",
     "format": "prettier --config .prettierrc --write src/**/*.{js,jsx,ts,tsx,json,css,scss,md}",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "type-check": "tsc --pretty --noEmit",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "test:e2e": "cypress run",
     "gql": "yarn gql:schema && yarn gql:codegen",
-    "gql:schema": "apollo client:download-schema --endpoint https://beta.pokeapi.co/graphql/v1beta ./src/graphql/generated/schema.graphqls",
+    "gql:schema": "env-cmd -f ./.env ./scripts/gql-schema",
     "gql:codegen": "apollo client:codegen --target typescript --localSchemaFile ./src/graphql/generated/schema.graphqls --outputFlat --includes \"src/graphql/**/*.ts\" --excludes \"src/graphql/generated/**\" --addTypename --globalTypesFile \"src/graphql/generated/graphql-global-types.ts\" ./src/graphql/generated",
     "find:unused": "npx next-unused"
   },
@@ -50,7 +51,8 @@
     "babel-jest": "^27.2.5",
     "babel-loader": "^8.2.2",
     "cypress": "^8.6.0",
-    "eslint": "^8.0.1",
+    "env-cmd": "^10.1.0",
+    "eslint": "7.32.0",
     "eslint-config-next": "^11.1.2",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.2",
@@ -69,7 +71,7 @@
       "prettier --config .prettierrc --write"
     ],
     "src/**/*.{js,jsx,ts,tsx}": [
-      "next lint --fix"
+      "eslint --fix"
     ],
     "src/**/*.{ts,tsx}": [
       "bash -c tsc --noEmit"

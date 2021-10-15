@@ -1,7 +1,6 @@
 {
-  "extends": [
-    "next/core-web-vitals"
-  ],
+  "root": true,
+  "extends": "next/core-web-vitals",
   "overrides": [
     {
       "files": [

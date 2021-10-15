@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { COLORS, getColor } from 'styles/color';
 
+import { COLORS, getColor } from 'styles/color';
 import { getSpacing } from 'styles/dimensions';
 
 const Wrapper = styled.header`
