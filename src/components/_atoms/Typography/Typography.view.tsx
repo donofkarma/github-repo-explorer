@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { ALIGNMENTS, VARIANTS } from './Typography.constants';
-import { Alignments, Variants } from './Typography.types';
 import * as St from './Typography.style';
+import { Alignments, Variants } from './Typography.types';
 
 interface Props {
   align?: Alignments;

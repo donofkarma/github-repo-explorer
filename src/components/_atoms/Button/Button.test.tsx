@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
-import React from 'react';
 import { render, screen } from '@testing-library/react';
+import React from 'react';
 
 import { VARIANTS } from './Button.constants';
 import Button from './Button.view';
